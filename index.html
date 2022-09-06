@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Piagno Uno-Extreme</title>
+		<meta name="description" content="A RNG for Uno-Extreme">
+		<style>
+			body {
+				margin: 0 auto;
+				background-color: black;
+				color: white;
+				font-family: sans-serif;
+			}
+			body > div > div {
+				margin-top: 20px;
+				margin-bottom: 20px;
+				text-align: center;
+				font-size: 40px;
+			}
+			button {
+				width: 100%;
+				padding: 10px;
+				font-size: 25px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Piagno Uno-Extreme</h1>
+		<div id="start_game"><button type="button">Start a new Game</button></div>
+		<div id="uno_button">
+			<div>&nbsp;</div>
+			<div><button type="button">Take Cards!</button></div>
+		</div>
+	</body>
+	<script>
+		rounds = 0
+		text_element = document.getElementById('uno_button').children[0]
+		document.getElementById('start_game').children[0].onclick = () => {
+			rounds = 0
+			text_element.innerText = 'Started a new game'
+		}
+		document.getElementById('uno_button').children[1].onclick = () => {
+			let number = Math.floor(Math.random()*10) //TODO better rng
+			rounds++
+			text_element.innerText = 'Wait...'
+			setTimeout(()=>{
+				text_element.innerText = 'Take '+number+' cards!'
+			},500)
+		}
+	</script>
+</html>
