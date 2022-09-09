@@ -41,12 +41,25 @@
 			text_element.innerText = 'Started a new game'
 		}
 		document.getElementById('uno_button').children[1].onclick = () => {
-			let number = Math.floor(Math.random()*10) //TODO better rng
+			let number = get_number()
 			rounds++
 			text_element.innerText = 'Wait...'
 			setTimeout(()=>{
 				text_element.innerText = 'Take '+number+' cards!'
 			},500)
+		}
+		get_number = () => {
+			let number = 0
+			let no_card_chance = rounds + 30
+			if(no_card_chance > 60){no_card_chance = 60}
+			let random = Math.floor(Math.random()*100)
+			if(random > no_card_chance){
+				let min_card = Math.floor(rounds / 20 + 1)
+				let card_range_floored = min_card + 3
+				if(card_range_floored > 11-min_card){card_range_floored = 11-min_card}
+				number = Math.floor(Math.random()*card_range_floored) + min_card
+			}
+			return number
 		}
 	</script>
 </html>
